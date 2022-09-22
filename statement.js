@@ -5,8 +5,16 @@ class Statement {
     return outputList.reverse().join("\n")
   }
 
+  #dateMonth(date) {
+    if (date.getMonth() < 9) {
+      return `0${date.getMonth() + 1}`
+    } else {
+      return `${date.getMonth() + 1}`
+    }
+  }
+
   #formatDate(date) {
-    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+    return `${date.getDate()}/${this.#dateMonth(date)}/${date.getFullYear()}`
   }
 
   #creditOrDebit(amount) {

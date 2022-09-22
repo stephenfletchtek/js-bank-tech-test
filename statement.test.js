@@ -13,6 +13,6 @@ describe('Statement class', () => {
     const mockBankAccount = {}
     mockBankAccount.allTransactions = () => [[new Date('2022-09-20'), 200, 200]]
     const result = statement.createStatement(mockBankAccount)
-    expect(result).toEqual("date || credit || debit || balance\n20/9/2022 || 200.00 || || 200.00")
+    expect(result).toEqual("date || credit || debit || balance\n20/09/2022 || 200.00 || || 200.00")
   })
 })
