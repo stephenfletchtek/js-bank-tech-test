@@ -12,14 +12,14 @@ class Statement {
 
   #creditOrDebit(amount) {
     if (amount > 0) {
-      return ` || ${twoDecPl(amount)} || || `
+      return ` || ${this.#twoDecPl(amount)} || || `
     } else {
-      return ` || || ${twoDecPl(-amount)} || `
+      return ` || || ${this.#twoDecPl(-amount)} || `
     }
   }
 
   #formatTransactionList(bankAccount) {
-    const result = bankAccount.allTransactions().map(line => `${line[0].getDate()}/${line[0].getMonth() + 1}/${line[0].getFullYear()} ${this.#creditOrDebit(line[1])} ${this.#twoDecPl(line[2])}`)
+    const result = bankAccount.allTransactions().map(line => `${line[0].getDate()}/${line[0].getMonth() + 1}/${line[0].getFullYear()}${this.#creditOrDebit(line[1])}${this.#twoDecPl(line[2])}`)
     return result
   }
 }

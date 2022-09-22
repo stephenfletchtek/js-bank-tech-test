@@ -7,4 +7,12 @@ describe('Statement class', () => {
     const result = statement.createStatement(mockBankAccount)
     expect(result).toEqual('date || credit || debit || balance')
   })
+
+  it('single credit', () => {
+    const statement = new Statement;
+    const mockBankAccount = {}
+    mockBankAccount.allTransactions = () => [[new Date('2022-09-20'), 200, 200]]
+    const result = statement.createStatement(mockBankAccount)
+    expect(result).toEqual("date || credit || debit || balance\n20/9/2022 || 200.00 || || 200.00")
+  })
 })
