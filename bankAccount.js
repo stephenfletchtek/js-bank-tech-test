@@ -12,7 +12,7 @@ class BankAccount {
   }
 
   allTransactions() {
-    accumulator = this.openingBalance
+    let accumulator = this.openingBalance
     const sorted = this.transactions.sort()
     return sorted.map(transaction => {
       transaction.push(accumulator += transaction[1])

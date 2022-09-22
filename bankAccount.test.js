@@ -10,4 +10,9 @@ describe('BankAccount class', () => {
     const bankAccount = new BankAccount(100);
     expect(bankAccount.openingBalance).toBe(100);
   })
+
+  it('has no transactions', () => {
+    const bankAccount = new BankAccount;
+    expect(bankAccount.allTransactions()).toEqual([])
+  })
 })
