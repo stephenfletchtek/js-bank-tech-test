@@ -55,4 +55,16 @@ describe('BankAccount class', () => {
     expect(bankAccount.transact(100)).toEqual([date2.valueOf(), 100])
     expect(bankAccount.allTransactions()).toEqual([[date1.valueOf(), 200, 200], [date2.valueOf(), 100, 300]])
   })
+
+  it('adds 90 on 19/09/2022 and 100 on 20/09/2022', () => {
+    const date1 = new Date('2022-09-19')
+    const date2 = new Date('2022-09-20')
+    const mockDate = {}
+    const bankAccount = new BankAccount(0, mockDate);
+    mockDate.getTime = () => date1.valueOf()
+    expect(bankAccount.transact(90)).toEqual([date1.valueOf(), 90])
+    mockDate.getTime = () => date2.valueOf()
+    expect(bankAccount.transact(100)).toEqual([date2.valueOf(), 100])
+    expect(bankAccount.allTransactions()).toEqual([[date1.valueOf(), 90, 90], [date2.valueOf(), 100, 190]])
+  })
 })
