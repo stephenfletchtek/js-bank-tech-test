@@ -6,17 +6,19 @@ class BankAccount {
   }
 
   transact(amount) {
-    const date = this.date.now()
+    const date = this.date.getTime()
     this.transactions.push([date, amount])
     return ([date, amount])
   }
 
   allTransactions() {
     let accumulator = this.openingBalance
-    const sorted = this.transactions.sort()
-    return sorted.map(transaction => {
-      transaction.push(accumulator += transaction[1])
+    const sorted = this.transactions.sort().map(element => [...element])
+    sorted.forEach(element => {
+      accumulator += element[1]
+      element.push(accumulator)
     })
+    return sorted
   }
 }
 
