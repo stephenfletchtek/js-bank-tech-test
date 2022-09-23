@@ -5,16 +5,19 @@ class Statement {
     return outputList.reverse().join("\n")
   }
 
-  #dateMonth(date) {
-    if (date.getMonth() < 9) {
-      return `0${date.getMonth() + 1}`
-    } else {
-      return `${date.getMonth() + 1}`
+  #padding(num) {
+    let padding = ""
+    if (num < 10) {
+      padding = 0
     }
+    return `${padding}${num}`
   }
 
   #formatDate(date) {
-    return `${date.getDate()}/${this.#dateMonth(date)}/${date.getFullYear()}`
+    const day = this.#padding(date.getDate())
+    const month = this.#padding(date.getMonth() + 1)
+    const year = date.getFullYear()
+    return `${day}/${month}/${year}`
   }
 
   #creditOrDebit(amount) {
