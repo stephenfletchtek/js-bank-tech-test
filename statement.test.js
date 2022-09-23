@@ -19,9 +19,9 @@ describe('Statement class', () => {
   it('single credit of 100', () => {
     const statement = new Statement;
     const mockBankAccount = {}
-    mockBankAccount.allTransactions = () => [[new Date('2022-11-20'), 100, 100]]
+    mockBankAccount.allTransactions = () => [[new Date('2022-09-20'), 100, 100]]
     const result = statement.createStatement(mockBankAccount)
-    expect(result).toEqual("date || credit || debit || balance\n20/11/2022 || 100.00 || || 100.00")
+    expect(result).toEqual("date || credit || debit || balance\n20/09/2022 || 100.00 || || 100.00")
   })
 
   it('single credit of 3.1415927', () => {
@@ -30,5 +30,13 @@ describe('Statement class', () => {
     mockBankAccount.allTransactions = () => [[new Date('2022-09-20'), 3.1415927, 3.1415927]]
     const result = statement.createStatement(mockBankAccount)
     expect(result).toEqual("date || credit || debit || balance\n20/09/2022 || 3.14 || || 3.14")
+  })
+
+  it('withdrawal of 50', () => {
+    const statement = new Statement;
+    const mockBankAccount = {}
+    mockBankAccount.allTransactions = () => [[new Date('2022-09-20'), -50, -50]]
+    const result = statement.createStatement(mockBankAccount)
+    expect(result).toEqual("date || credit || debit || balance\n20/09/2022 || || 50.00 || -50.00")
   })
 })

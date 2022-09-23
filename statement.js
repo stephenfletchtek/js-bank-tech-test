@@ -21,7 +21,7 @@ class Statement {
     if (amount > 0) {
       return ` || ${amount.toFixed(2)} || || `
     } else {
-      return ` || || ${-amount.toFixed(2)} || `
+      return ` || || ${(-amount).toFixed(2)} || `
     }
   }
 
