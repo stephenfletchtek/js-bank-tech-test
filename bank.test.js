@@ -30,4 +30,17 @@ describe('Bank class', () => {
       this.bank.deposit();
     }).toThrow('method takes a positive number as an argument');
   });
+
+  it('rejects zero deposit', () => {
+    expect(() => {
+      this.bank.deposit(0);
+    }).toThrow('method takes a positive number as an argument')
+  });
+
+  it('negative deposit', () => {
+    expect(() => {
+      this.bank.deposit(-25);
+    }).toThrow('method takes a positive number as an argument')
+  });
+
 })

@@ -18,11 +18,11 @@ class Bank {
 
   withdraw(amount) {
     this.#checkArgs(amount)
-    this.bankAccount.transact(-amount)
+    return this.bankAccount.transact(-amount)
   }
 
   #checkArgs(arg) {
-    if (isNaN(arg)) {
+    if (isNaN(arg) || arg <= 0) {
       throw 'method takes a positive number as an argument'
     }
   }
