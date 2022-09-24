@@ -16,9 +16,10 @@ describe('Bank class', () => {
   })
 
   it('deposit 200 into bank', () => {
-    const date = new Date('2022-09-19')
-    this.mockBankAccount.transact = (arg) => [date, arg]
-    expect(this.bank.deposit(200)).toEqual([date, 200])
+    this.mockBankAccount.transact = jest.fn()
+    this.bank.deposit(200)
+    expect(this.mockBankAccount.transact).toHaveBeenCalledTimes(1)
+    expect(this.mockBankAccount.transact).toHaveBeenCalledWith(200)
   })
 
   it('wrong number of arguments given', () => {
@@ -46,8 +47,9 @@ describe('Bank class', () => {
   });
 
   it('withdraw 200 from bank', () => {
-    const date = new Date('2022-09-20')
-    this.mockBankAccount.transact = (arg) => [date, arg]
-    expect(this.bank.withdraw(200)).toEqual([date, -200])
+    this.mockBankAccount.transact = jest.fn()
+    this.bank.withdraw(200)
+    expect(this.mockBankAccount.transact).toHaveBeenCalledTimes(1)
+    expect(this.mockBankAccount.transact).toHaveBeenCalledWith(-200)
   })
 })
