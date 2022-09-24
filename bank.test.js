@@ -8,15 +8,11 @@ describe('Bank class', () => {
     this.header = 'date || credit || debit || balance';
   })
 
-  it('shows statement with single credit of 200', () => {
-    const line1 = "\n20/09/2022 || 200.00 || || 200.00"
-    this.mockBankAccount.test = true
-    this.mockStatement.createStatement = (arg) => {
-      if (arg.test == true) {
-        return (this.header + line1);
-      }
-    }
-    expect(this.bank.showStatement()).toEqual(this.header + line1);
+  it('showStatement method', () => {
+    this.mockStatement.createStatement = jest.fn()
+    this.bank.showStatement()
+    expect(this.mockStatement.createStatement).toHaveBeenCalledTimes(1)
+    expect(this.mockStatement.createStatement).toHaveBeenCalledWith(this.mockBankAccount)
   })
 
   it('deposit 200 into bank', () => {
@@ -48,4 +44,10 @@ describe('Bank class', () => {
       this.bank.deposit('loada money');
     }).toThrow('method takes a positive number as an argument')
   });
+
+  it('withdraw 200 from bank', () => {
+    const date = new Date('2022-09-20')
+    this.mockBankAccount.transact = (arg) => [date, arg]
+    expect(this.bank.withdraw(200)).toEqual([date, -200])
+  })
 })
