@@ -43,4 +43,9 @@ describe('Bank class', () => {
     }).toThrow('method takes a positive number as an argument')
   });
 
+  it('rejects string argument', () => {
+    expect(() => {
+      this.bank.deposit('loada money');
+    }).toThrow('method takes a positive number as an argument')
+  });
 })
